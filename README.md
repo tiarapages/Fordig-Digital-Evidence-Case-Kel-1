@@ -14,7 +14,7 @@ certutil -hashfile soal_forensik.img SHA256
 
 **Hash SHA-256:** `321031cfc0727004562df456618015fcfa9190a16a4d6898408ed8e80d9d4b10`
 
-![hash image](image/01-hash-awal.png)
+![hash image](image/hash-awal.png)
 
 ### Tahap 2: Kunci Master & Buat Salinan Kerja
 
@@ -25,7 +25,7 @@ attrib +r soal_forensik.img
 copy soal_forensik.img kerja.img
 ```
 
-![salinan kerja](image/02-salinan-kerja.png)
+![salinan kerja](image/salinan-kerja.png)
 
 ### Tahap 3: Analisis Tabel Partisi (mmls)
 
@@ -41,7 +41,7 @@ mmls.exe kerja.img
 
 **Temuan:** Partisi FAT32 dimulai pada sektor **63**, sehingga `OFFSET = 63`.
 
-![mmls](image/03-mmls.png)
+![mmls](image/mmls.png)
 
 ### Tahap 4: Penelusuran File Terhapus (fls)
 
@@ -63,7 +63,7 @@ r/r * 698:      Tugas/._flag.txt
 - `_lag.txt` (inode **696**) adalah file yang namanya kepotong. Pada FAT, penghapusan mengganti karakter pertama nama file dengan penanda hapus, sehingga huruf pertama hilang dan terbaca `_`.
 - `._flag.txt` (inode 698) adalah file metadata bawaan macOS (AppleDouble). Entri ini mengonfirmasi bahwa nama asli file adalah `flag.txt`.
 
-![fls](image/04-fls-deleted.png)
+![fls](image/fls-deleted.png)
 
 ### Tahap 5: Pemulihan Isi File (icat)
 
@@ -73,7 +73,7 @@ Isi file dipulihkan langsung lewat nomor inode, tanpa perlu nama filenya.
 icat.exe -o 63 kerja.img 696
 ```
 
-![icat](image/05-icat-flag.png)
+![icat](image/icat-flag.png)
 
 ### Tahap 6: Verifikasi Integritas Akhir
 
@@ -83,7 +83,7 @@ Hash image master dihitung ulang dan hasilnya sama dengan hash di Tahap 1, artin
 certutil -hashfile soal_forensik.img SHA256
 ```
 
-![hash akhir](image/06-hash-verifikasi.png)
+![hash akhir](image/hash-verifikasi.png)
 
 ---
 
