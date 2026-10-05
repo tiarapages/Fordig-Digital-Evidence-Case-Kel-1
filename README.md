@@ -25,7 +25,7 @@ attrib +r soal_forensik.img
 copy soal_forensik.img kerja.img
 ```
 
-![salinan kerja](image/salinan-kerja.png)
+![salinan kerjaa](image/salinan-kerjaa.png)
 
 ### Tahap 3: Analisis Tabel Partisi (mmls)
 
