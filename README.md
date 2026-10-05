@@ -14,7 +14,7 @@ certutil -hashfile soal_forensik.img SHA256
 
 **Hash SHA-256:** `321031cfc0727004562df456618015fcfa9190a16a4d6898408ed8e80d9d4b10`
 
-![hash image](image/hash-awal.png)
+![hash image](image/hash-awall.png)
 
 ### Tahap 2: Kunci Master & Buat Salinan Kerja
 
